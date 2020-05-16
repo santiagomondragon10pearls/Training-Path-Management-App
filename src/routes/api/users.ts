@@ -96,13 +96,10 @@ router.post(
           to: 'nodejsmailingtest@gmail.com', // list of receivers
           subject: 'THIS IS A TEST SUBJECT', // Subject line
           html: `<div>
-                <p>
-                  <a href="https://www.google.com">Click here</a> to set up your password
-                <p>
-                <p>
-                  ${token}
-                <p>
-              </div>`, // plain text body
+            <h1>Your account to 10Pearls Training Path was successfully created.<h1>
+            <p>Please click the following <a href="https://www.google.com">link</a>link to assign your password<p>
+            <p>${token}<p>
+          </div>`,
         };
 
         transporter.sendMail(mailOptions, function (err, info) {

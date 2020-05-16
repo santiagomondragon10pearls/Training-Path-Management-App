@@ -77,7 +77,10 @@ router.post(
 
         jwt.sign(payload, jwtSecret, { expiresIn: 360000 }, (error, token) => {
           if (error) throw error;
-          res.json({ token });
+          res.json({
+            token,
+            msg: 'Your password has been created successfully',
+          });
         });
       }
     } catch (error) {

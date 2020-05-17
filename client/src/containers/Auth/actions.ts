@@ -7,6 +7,8 @@ import {
   AUTH_FAILURE,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  SET_PASSWORD_SUCCESS,
+  SET_PASSWORD_FAILURE,
   LOGOUT,
 } from '../../actions';
 
@@ -104,4 +106,45 @@ export const login = (email: string, password: string) => async (
 // Logout
 export const logout = () => async (dispatch: any) => {
   dispatch({ type: LOGOUT });
+};
+
+// Logout
+export const setNewPassword = (
+  password: string,
+  confirmation: string,
+  token: string
+) => async (dispatch: any) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = await JSON.stringify({ password, confirmation });
+
+  try {
+    const res = await axios.post(
+      `/api/users/setPassword?token=${token}`,
+      body,
+      config
+    );
+    dispatch({
+      type: SET_PASSWORD_SUCCESS,
+      payload: res.data,
+    });
+    dispatch(loadUser());
+    dispatch(
+      setAlert('Your password has been created successfully', 'success')
+    );
+  } catch (error) {
+    const errors = error.response.data.errors;
+    if (errors) {
+      errors.map((error: { msg: string }) => {
+        dispatch(setAlert(error.msg, 'error'));
+      });
+    }
+    dispatch({
+      type: SET_PASSWORD_FAILURE,
+    });
+  }
 };

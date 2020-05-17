@@ -92,13 +92,12 @@ router.post(
 
         // Set your password email with jsonwebtoken
         const mailOptions = {
-          from: 'nodejsmailingtest@gmail.com', // sender address
-          to: 'nodejsmailingtest@gmail.com', // list of receivers
-          subject: 'THIS IS A TEST SUBJECT', // Subject line
+          from: 'nodejsmailingtest@gmail.com',
+          to: user?.email,
+          subject: '10Pearls Training Path Password',
           html: `<div>
             <h1>Your account to 10Pearls Training Path was successfully created.<h1>
-            <p>Please click the following <a href="https://www.google.com">link</a>link to assign your password<p>
-            <p>${token}<p>
+            <p>Please click the following <a href="http://localhost:3000/setPassword/${token}">link</a> to assign your password<p>
           </div>`,
         };
 
@@ -120,8 +119,8 @@ router.post(
 router.post(
   '/setPassword',
   [
-    check('password', 'First name is required').not().isEmpty(),
-    check('confirmation', 'Last name is required').not().isEmpty(),
+    check('password', 'Password s required').not().isEmpty(),
+    check('confirmation', 'Confirmation is required').not().isEmpty(),
   ],
   async (req: CustomRequest, res: Response) => {
     try {
@@ -145,6 +144,12 @@ router.post(
       let user = await User.findOne({
         email: decodedToken.user.email,
       });
+
+      if (user?.password !== undefined || user?.password !== null) {
+        return res
+          .status(401)
+          .json({ errors: [{ msg: 'You have already set your password' }] });
+      }
 
       const salt: string = await bcrypt.genSalt(10);
       const password: string = await bcrypt.hash(req.body.password, salt);

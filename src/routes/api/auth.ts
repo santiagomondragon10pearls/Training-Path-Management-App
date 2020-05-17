@@ -48,9 +48,14 @@ router.post(
       let user = await User.findOne({ email });
 
       if (!user) {
-        return res
-          .status(400)
-          .json({ errors: [{ msg: 'User does not exists' }] });
+        return res.status(400).json({
+          errors: [
+            {
+              msg:
+                'The email entered does not exist in our records, please validate and try again',
+            },
+          ],
+        });
       }
 
       if (user) {
@@ -79,7 +84,6 @@ router.post(
           if (error) throw error;
           res.json({
             token,
-            msg: 'Your password has been created successfully',
           });
         });
       }

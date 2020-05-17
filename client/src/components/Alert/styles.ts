@@ -1,9 +1,5 @@
 import styled, { keyframes } from 'styled-components/macro';
 
-interface ICustomProps {
-  timeout: boolean;
-}
-
 const AlertContainer = styled.ul`
   && {
     min-width: 300px;
@@ -55,7 +51,8 @@ export const AlertItem = styled.li<{ timeOut: number }>`
     position: relative;
     color: white;
     text-transform: capitalize;
-    animation: ${entrance} ${props => props.timeOut / 1000}s ease-in-out 1;
+    animation: ${entrance}
+      ${(props: { timeOut: number }) => props.timeOut / 1000}s ease-in-out 1;
 
     & > svg {
       margin-right: 12px;

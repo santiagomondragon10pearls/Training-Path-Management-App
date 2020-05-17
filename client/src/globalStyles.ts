@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components/macro';
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -31,15 +31,21 @@ const GlobalStyle = createGlobalStyle`
     & * {
       box-sizing: border-box;
       outline: none;
-      transition: all 0.2s ease-in-out;
-      font-family: 'Heebo', sans-serif;
+      transition: all 0.25s ease-in-out;
+      font-family: 'Jost', sans-serif;
       margin: 0;
       padding: 0;
       text-decoration: none;
+      color: #343A40;
+
+      &::selection {
+        background: #5f6d79;
+        color: #F8F9FA;
+      }
     }
 
     & h1, & h2, & h3, & h4, & h5, & h6 {
-      font-family: 'Merriweather', serif;
+      font-family: 'Oswald', sans-serif;
     }
 
     & #app {

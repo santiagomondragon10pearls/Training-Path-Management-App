@@ -1,4 +1,11 @@
 {
-  "plugins": ["babel-plugin-styled-components", "emotion"],
+  "plugins": [
+    [
+      "babel-plugin-styled-components",
+      {
+        "fileName": false
+      }
+    ]
+  ],
   "presets": ["@babel/preset-react", "@babel/preset-env"]
 }

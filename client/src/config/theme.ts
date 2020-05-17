@@ -7,6 +7,8 @@ const theme = {
   },
   color: {
     accents: {
+      darkBlue: '#3e416d',
+      hoverDarkBlue: '#484b77',
       purple: '#6F42C1',
       indigo: '#6610F2',
       blue: '#007BFF',
@@ -18,9 +20,14 @@ const theme = {
       warning: '#FFC107',
     },
     gray: {
-      dark: '#343A40',
+      darker: '#343A40',
+      dark: '#5f6d79',
       main: '#6C757D',
-      light: '#F8F9FA',
+      light: '#EDEFF0',
+      lighter: '#F8F9FA',
+      gradient: {
+        main: 'linear-gradient(120deg,#343A40 0, #5f6d79 100%)',
+      },
     },
     white: '#FFFFFF',
   },
@@ -29,15 +36,25 @@ const theme = {
     opened: '192px',
   },
   radius: {
-    container: '8px',
-    bigBtn: '4px',
-    smallBtn: '2px',
+    container: '6px',
+    bigItem: '6px',
+    smallItem: '4px',
   },
-  pixelSpacing(value: number) {
-    return `${value * 8}px`;
+  shadow: {
+    container: '0 5px 15px -5px rgba(0, 0, 0, 0.08)',
+    input: '0 2px 8px -2px rgba(0, 0, 0, 0.12)',
+  },
+  width: {
+    full: '100%',
+    '1/3': 'calc(100% / 3)',
+    '1/2': '50%',
+    '2/3': 'calc(100% / 3 * 2)',
   },
   numberSpacing(value: number) {
     return value * 8;
+  },
+  pixelSpacing(value: number) {
+    return `${value * 8}px`;
   },
 };
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 import theme from '../../../config/theme';
 
-const LoginContainer = styled.section`
+const SetPasswordContainer = styled.section`
   && {
     display: flex;
     flex-direction: column;
@@ -14,7 +14,7 @@ const LoginContainer = styled.section`
   }
 `;
 
-export default LoginContainer;
+export default SetPasswordContainer;
 
 export const FormContainer = styled.section`
   && {
@@ -64,15 +64,14 @@ export const Greet = styled.article`
   }
 `;
 
-export const LoginForm = styled.form`
+export const SetPasswordForm = styled.form`
   && {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex: 1 1 50%;
 
-    height: 100%;
+    width: ${theme.width['1/2']};
 
     padding: ${theme.pixelSpacing(6)};
 
@@ -80,7 +79,7 @@ export const LoginForm = styled.form`
     border-radius: ${theme.radius.container};
     box-shadow: ${theme.shadow.container};
 
-    & .login-form {
+    & .new-password-form {
       display: flex;
       flex-direction: column;
       align-items: center;

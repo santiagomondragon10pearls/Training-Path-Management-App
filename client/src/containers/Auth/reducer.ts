@@ -7,6 +7,8 @@ import {
   AUTH_FAILURE,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  SET_PASSWORD_SUCCESS,
+  SET_PASSWORD_FAILURE,
   LOGOUT,
 } from '../../actions';
 
@@ -21,6 +23,7 @@ export default function (state = initialState, action: any) {
   const { type, payload } = action;
 
   switch (type) {
+    case SET_PASSWORD_SUCCESS:
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.setItem('token', payload.token);
@@ -30,6 +33,7 @@ export default function (state = initialState, action: any) {
         isAuthenticated: true,
         isLoading: false,
       };
+    case SET_PASSWORD_FAILURE:
     case REGISTER_FAILURE:
     case AUTH_FAILURE:
     case LOGIN_FAILURE:
